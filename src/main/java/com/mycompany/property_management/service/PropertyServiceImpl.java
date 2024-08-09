@@ -84,6 +84,7 @@ public class PropertyServiceImpl implements PropertyService{
             pe.setPrice(propertyDto.getPrice());
             propertyRepository.save(pe);
             propertyDto1 = propertyConverter.convertEntitytoDto(pe);
+            //test
         }
 
         return propertyDto1;
