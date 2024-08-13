@@ -28,11 +28,10 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody String email,String password){
-       UserDto userDto= userService.login(email, password);
-       ResponseEntity<UserDto> responseEntity = new ResponseEntity<>(userDto,HttpStatus.OK);
-       return responseEntity;
+    public ResponseEntity<UserDto> login(@RequestBody UserDto userDto){
+        UserDto userDto1 = userService.login(userDto.getOwnerEmail(), userDto.getPassword());
+        ResponseEntity<UserDto> responseEntity = new ResponseEntity<>(userDto1, HttpStatus.CREATED);
+        return responseEntity;
     }
-
 
 }

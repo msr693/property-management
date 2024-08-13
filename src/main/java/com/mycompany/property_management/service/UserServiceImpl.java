@@ -28,13 +28,13 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto login(String email, String password) {
+
         Optional<UserEntity> optUserEntity = userRepository.findByOwnerEmailAndPassword(email, password);
 
         UserDto userDto = null;
         if (optUserEntity.isPresent()) {
             userDto = userConverter.convertEntitytoDto(optUserEntity.get());
         }
-
 
         return userDto;
     }
