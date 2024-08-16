@@ -1,12 +1,15 @@
 package com.mycompany.property_management.controller;
 
 import com.mycompany.property_management.dto.PropertyDto;
+//import com.mycompany.property_management.retrieval.PropertyCalls;
+import com.mycompany.property_management.retrieval.PropertyCalls;
 import com.mycompany.property_management.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -16,9 +19,18 @@ public class PropertyController {
     @Autowired
     private PropertyService propertyService;
 
+    @Autowired
+    private PropertyCalls propertyCalls;
+
     @GetMapping("/hello")
     public String sayHello(){
         return "Hello";
+    }
+
+    @GetMapping("/callhello")
+    public  ResponseEntity<String>  callHello() throws URISyntaxException {
+        ResponseEntity<String> responseEntity = propertyCalls.callHello();
+        return responseEntity;
     }
 
     @PostMapping("/properties")
